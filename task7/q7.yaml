@@ -9,16 +9,11 @@ spec:
       containers:
             - image: alpine
               name: alpha
-              command:
-                  - /bin/bash
-                  - -c
-                  - while true; do date >> /mnt/date.txt;sleep 3; done
+              command: ["/bin/sh","-c","while true ; do date >> /mnt/date.txt;sleep 3;done"]
               volumeMounts:
                     - name: local
-                      mountPath: /mnt/date.txt
+                      mountPath: /mnt/
+      restartPolicy: Always
       volumes:
            - name: local
-             hostPath:
-                  path: /adhocoutput.txt
-                  type: File
-                  
+             emptyDir: {}
