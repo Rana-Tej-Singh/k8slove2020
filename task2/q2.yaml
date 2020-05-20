@@ -1,0 +1,29 @@
+kind: Pod
+apiVersion: v1
+metadata:
+     name: adhocpod1
+     namespace: tejsinghrana
+     labels:
+         adhoc: tejsinghranaq2
+         adhoc: ashuq2
+spec:
+   containers:
+        - image: nginx
+          name: adhocpod1
+          ports:
+             - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+     name: q2svctejsinghrana
+     namespace: tejsinghrana
+spec:
+    type: NodePort
+    ports:
+       - port: 80
+         targetPort: 80
+         nodePort: 32500
+    selector:
+         adhoc: tejsinghranaq2
+         adhoc: ashuq2

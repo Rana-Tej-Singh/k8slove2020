@@ -1,0 +1,36 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+      name: adhocdeptejsinghrana5
+      namespace: tejsinghrana
+spec:
+     replicas: 3
+     selector:
+          matchLabels:
+                  adhoc: tejsinghranaq5
+     template:
+           metadata:
+                 namespace: tejsinghrana
+                 name: pod5
+                 labels:
+                     adhoc: tejsinghranaq5
+           spec:          
+             containers:
+                   - image: flamebaba/may2020q1:v1
+                     name: tejsingh5
+                     ports:
+                           - containerPort: 80
+             restartPolicy: Always
+---
+kind: Service
+apiVersion: v1
+metadata:
+      name: q5svctejsinghrana
+      namespace: tejsinghrana
+spec:
+     type: LoadBalancer
+     ports:
+         - port: 80
+           targetPort: 80
+     selector:
+           adhoc: tejsinghranaq5

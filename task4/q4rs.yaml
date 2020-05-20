@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+      name: adhocrstejsinghrana4
+      namespace: tejsinghrana
+spec:
+      replicas: 2
+      selector:
+            matchLabels:
+                  adhoc: tejsinghranaq4
+      template:
+           metadata:
+                name: pod4
+                namespace: tejsinghrana
+                labels:
+                    adhoc: tejsinghranaq4
+           spec:
+               containers:
+                     - image: flamebaba/may2020q1:v1
+                       name: flamebaba
+                       ports:
+                           - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+      name: q4svctejsinghrana
+      namespace: tejsinghrana
+spec:
+     type: LoadBalancer
+     ports:
+        - port: 80
+          targetPort: 80
+     selector:
+          adhoc: tejsinghranaq4
